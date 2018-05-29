@@ -1,4 +1,4 @@
-from math import log, ceil, sqrt
+from math import log, ceil
 
 
 def prime_generator(upper_limit):
