@@ -1,4 +1,7 @@
+from utils import timeit
 
+
+@timeit
 def prime_generator(upper_limit):
     upper_limit = int(upper_limit)
     primes = [True] * (upper_limit + 1)

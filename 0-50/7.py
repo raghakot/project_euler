@@ -1,4 +1,5 @@
 from math import log, ceil
+from utils import timeit
 
 
 def prime_generator(upper_limit):
@@ -14,6 +15,7 @@ def prime_generator(upper_limit):
                 primes[n] = False
 
 
+@timeit
 def nth_prime(n):
     # Use upper bound: https://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number
     upper = n * log(n)

@@ -1,7 +1,9 @@
 from collections import deque
 from operator import mul
+from utils import timeit
 
 
+@timeit
 def largest_adjacent_product(number, k):
     """ Idea:
     - Use sliding window.

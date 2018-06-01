@@ -1,8 +1,11 @@
+from utils import timeit
+
 
 def is_pal(num):
     return str(num) == str(num)[::-1]
 
 
+@timeit
 def largest_pal(digits):
     lower = 10**(digits-1)
     upper = 10**digits - 1

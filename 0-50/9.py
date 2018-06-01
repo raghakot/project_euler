@@ -1,4 +1,5 @@
 from operator import mul
+from utils import timeit
 
 
 def generate_triples(x, y):
@@ -13,6 +14,7 @@ def generate_triples(x, y):
     return n1, n2, n3
 
 
+@timeit
 def find_triplets(target_sum):
     tries = 0
 
@@ -23,18 +25,16 @@ def find_triplets(target_sum):
             triplets = generate_triples(x, y)
             s = sum(triplets)
             if s == target_sum:
-                print('Found in {} guesses'.format(tries))
-                return triplets
+                return tries, triplets
             if s > 1000:
                 break
 
-    print('Failed to find after {} tries'.format(tries))
-    return None
+    return tries, None
 
 
 if __name__ == '__main__':
     """ Finds in 91 guesses :D
     """
-    triplets = find_triplets(1000)
-    print(triplets)
+    tries, triplets = find_triplets(1000)
+    print("Found triplet {} in {} guesses".format(triplets, tries))
     print(reduce(mul, triplets, 1))

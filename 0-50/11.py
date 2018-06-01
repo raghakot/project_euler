@@ -1,4 +1,7 @@
+from utils import timeit
 
+
+@timeit
 def largest_product(grid, n):
     rows = len(grid)
     cols = len(grid[0])

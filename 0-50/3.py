@@ -1,4 +1,7 @@
+from utils import timeit
 
+
+@timeit
 def largest_prime_factor(n):
     # factors are n = p1 * p2 ... * pn (p1 <= p2 ... <= pn)
     # so, largest_factor(n) = largest_factor(n / p1)

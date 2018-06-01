@@ -1,3 +1,5 @@
+from utils import timeit
+
 
 def fib_generator():
     prev = 0
@@ -7,6 +9,7 @@ def fib_generator():
         cur, prev = cur + prev, cur
 
 
+@timeit
 def sum_even_fib(n):
     s = 0
     for num in fib_generator():

@@ -1,4 +1,7 @@
+from utils import timeit
 
+
+@timeit
 def sum_sq_minus_sq_sum(n):
     """
     Square of sum = (n (n + 1) / 2) ** 2

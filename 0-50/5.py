@@ -1,4 +1,5 @@
-from collections import defaultdict, Counter
+from collections import Counter
+from utils import timeit
 
 
 def factorize(n, cache):
@@ -8,10 +9,6 @@ def factorize(n, cache):
     factors = Counter()
     f = 2
     while f * f <= n:
-        if n in cache:
-            factors = factors + cache[n]
-            break
-
         count = 0
         while n % f == 0:
             n /= f
@@ -28,6 +25,7 @@ def factorize(n, cache):
     return factors
 
 
+@timeit
 def evenly_divisible(n):
     """ Idea:
     - Find factors of numbers 1 to n. Use DP to cache results bottom up.
