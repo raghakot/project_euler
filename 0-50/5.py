@@ -1,28 +1,5 @@
 from collections import Counter
-from utils import timeit
-
-
-def factorize(n, cache):
-    if n in cache:
-        return cache[n]
-
-    factors = Counter()
-    f = 2
-    while f * f <= n:
-        count = 0
-        while n % f == 0:
-            n /= f
-            count += 1
-
-        if count > 0:
-            factors[f] = count
-        f += 1
-
-    if n > 1:
-        factors[n] = 1
-
-    cache[n] = factors
-    return factors
+from utils import timeit, prime_factorize
 
 
 @timeit
@@ -33,10 +10,8 @@ def evenly_divisible(n):
         - For example, in in 1 .. 10, 2 has to be included 3 times since 8 = 2 ^ 3
     """
     max_counts = Counter()
-    cache = dict()
-
     for n in range(n, 1, -1):
-        factors = factorize(n, cache)
+        factors = prime_factorize(n)
 
         # Update max counts
         for k, v in factors.iteritems():

@@ -1,29 +1,5 @@
-from collections import Counter
 from operator import mul
-from utils import timeit
-
-
-def factorize(n, cache):
-    if n in cache:
-        return cache[n]
-
-    factors = Counter()
-    f = 2
-    while f * f <= n:
-        count = 0
-        while n % f == 0:
-            n /= f
-            count += 1
-
-        if count > 0:
-            factors[f] = count
-        f += 1
-
-    if n > 1:
-        factors[n] = 1
-
-    cache[n] = factors
-    return factors
+from utils import timeit, prime_factorize
 
 
 @timeit
@@ -35,12 +11,11 @@ def triangle_number_over_divisors(divisors):
     - n, n+1 are co-primes. They wont share same prime factors. So factors(n * (n + 1)) = factors(n) * factors(n+1)
     """
     n = 2
-    cache = dict()
     while True:
         if n % 2 == 0:
-            counts = factorize(n / 2, cache) + factorize(n + 1, cache)
+            counts = prime_factorize(n / 2) + prime_factorize(n + 1)
         else:
-            counts = factorize(n, cache) + factorize((n + 1) / 2, cache)
+            counts = prime_factorize(n) + prime_factorize((n + 1) / 2)
 
         num_divisors = reduce(mul, [v + 1 for v in counts.values()])
         if num_divisors >= divisors:
